@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djk2g4mpehk0f"
-path="res://.godot/imported/player jump left 48x48-sheet.png-eeab2752c583a035eae31a34929fd0bf.ctex"
+uid="uid://cs3vfbly6444s"
+path="res://.godot/imported/NightBorne.png-25ab385e6a3c74298a2e5b18eb2add2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Sprites/Jump/player jump left 48x48-sheet.png"
-dest_files=["res://.godot/imported/player jump left 48x48-sheet.png-eeab2752c583a035eae31a34929fd0bf.ctex"]
+source_file="res://Characters/Enemies/Boss/NightBorne.png"
+dest_files=["res://.godot/imported/NightBorne.png-25ab385e6a3c74298a2e5b18eb2add2c.ctex"]
 
 [params]
 

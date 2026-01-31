@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
 # --- Physics Constants ---
+const RUN_SPEED = 150.0
+
 @export var moveSpeed : float = 150.0
 
 @export var jumpHeight : float = 40.0
@@ -65,13 +67,13 @@ func UpdateState(input_axis: float) -> void:
 		else:
 			new_state = "FALLING"
 	else:
-		if input_axis != 0:
-			# We are walking
+		if input_axis != 0 and abs(velocity.x) > 5.0:
 			if input_axis > 0:
-				new_state = "WALK_RIGHT" 
+				new_state = "RUN_RIGHT" 
 			else:
-				new_state = "WALK_LEFT"
+				new_state = "RUN_LEFT"
 		else:
+			# We are either not pressing keys OR pushing a wall
 			new_state = "IDLE"
 
 	# Only update if state actually changed
