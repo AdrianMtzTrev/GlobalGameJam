@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqw7g2nffqia6"]
+
+[ext_resource type="Texture2D" uid="uid://cs3vfbly6444s" path="res://Characters/Enemies/Boss/NightBorne.png" id="1_km3dg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx07o"]
+
+[node name="Boss" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_km3dg")
+hframes = 23
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_dx07o")

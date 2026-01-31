@@ -1,9 +1,10 @@
 class_name Player extends CharacterBody2D
 
 # --- Physics Constants ---
-@export var moveSpeed : float = 200.0
+const RUN_SPEED = 150.0
 
-# These need to be @export so you can set them in the Inspector!
+@export var moveSpeed : float = 150.0
+
 @export var jumpHeight : float = 40.0
 @export var jumpTime2Peak : float = 0.35
 @export var jumpTime2Descent : float = 0.25
@@ -21,62 +22,58 @@ var updateAnimation : bool = true
 @onready var sprite : Sprite2D = $Sprite2D
 
 func _ready() -> void:
-	# Optional: Print to check if math is working (remove later)
-	print("Jump Gravity: ", jumpGravity)
-	print("Fall Gravity: ", fallGravity)
+	return
 
 func _physics_process(delta: float) -> void:
-	# 1. Apply Gravity (Add to existing Y velocity, don't replace it)
+	# Apply Gravity (Add to existing Y velocity, don't replace it)
 	velocity.y += GetGravity() * delta
 
-	# 2. Get Horizontal Input (Walk)
+	# Get Horizontal Input (Walk)
 	# This replaces your old "direction" logic for X movement
 	var input_axis = Input.get_axis("left", "right")
 	velocity.x = input_axis * moveSpeed
 
-	# 3. Handle Jump Input
+	# Handle Jump Input
 	# We use "is_action_just_pressed" so you don't bunny hop if you hold the button
 	if Input.is_action_just_pressed("up") and is_on_floor():
 		Jump()
 
-	# 4. Move
+	# Move
 	move_and_slide()
 
-	# 5. Handle Animation States
+	# Handle Animation States
 	UpdateState(input_axis)
 	if updateAnimation:
 		UpdateAnimation()
 
 func GetGravity() -> float:
-	# If moving up, use jump gravity. If moving down, use fall gravity.
+	# If we are moving up, we use jump gravity. If we are moving down, we use fall gravity.
 	return jumpGravity if velocity.y < 0.0 else fallGravity
 
 func Jump() -> void:
 	velocity.y = jumpVelocity
 
 func UpdateState(input_axis: float) -> void:
-	# 1. Handle Facing Direction
+	# Handle Facing Direction
 	if input_axis != 0:
 		sprite.flip_h = input_axis < 0
 	
-	# 2. Determine State based on Physics (Air vs Ground)
+	# Determine State based on Physics (Air vs Ground)
 	var new_state = state
 
 	if not is_on_floor():
 		if velocity.y < 0:
 			new_state = "JUMP"
 		else:
-			new_state = "FALLING" # Or use same anim as jump if you prefer
+			new_state = "FALLING"
 	else:
-		# We are on the ground
-		if input_axis != 0:
-			# We are walking. Decide if it's Left or Right animation
-			# Or just use a generic "WALK" and let flip_h handle direction
+		if input_axis != 0 and abs(velocity.x) > 5.0:
 			if input_axis > 0:
-				new_state = "WALK_RIGHT" 
+				new_state = "RUN_RIGHT" 
 			else:
-				new_state = "WALK_LEFT"
+				new_state = "RUN_LEFT"
 		else:
+			# We are either not pressing keys OR pushing a wall
 			new_state = "IDLE"
 
 	# Only update if state actually changed
@@ -89,5 +86,4 @@ func SetState(new_state : String) -> void:
 
 func UpdateAnimation() -> void:
 	updateAnimation = false
-	# Make sure these names match your AnimationPlayer names exactly!
 	animation_player.play(state)
