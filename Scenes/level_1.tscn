@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://cxvyraos6dybr"]
+[gd_scene load_steps=10 format=4 uid="uid://cxvyraos6dybr"]
 
 [ext_resource type="Texture2D" uid="uid://b8fqvytec0in4" path="res://Scenes/Tiles/Bakcground_Temple.png" id="1_8ffim"]
 [ext_resource type="PackedScene" uid="uid://b31sn14lgmi3d" path="res://Characters/Player/Scenes/player.tscn" id="1_vk57k"]
 [ext_resource type="Texture2D" uid="uid://bnclcxlduuxft" path="res://Scenes/Tiles/Foreground.png" id="2_xfk5q"]
 [ext_resource type="Script" uid="uid://dcdr4y6dfipub" path="res://Scenes/CambioScene1.gd" id="4_7p6j4"]
-[ext_resource type="PackedScene" uid="uid://dqw7g2nffqia6" path="res://Characters/Enemies/Boss/boss.tscn" id="5_boss"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7p6j4"]
 texture = ExtResource("1_8ffim")
@@ -43,7 +42,6 @@ tile_set = SubResource("TileSet_lsmp6")
 
 [node name="Player" parent="." instance=ExtResource("1_vk57k")]
 position = Vector2(88, 211)
-moveSpeed = 150.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(26, -74)
@@ -52,12 +50,10 @@ position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.37
+drag_top_margin = 0.89
 drag_right_margin = 0.37
 drag_bottom_margin = 0.76
 editor_draw_drag_margin = true
-
-[node name="Boss" parent="." instance=ExtResource("5_boss")]
-position = Vector2(362, 198)
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("4_7p6j4")

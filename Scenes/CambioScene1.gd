@@ -2,7 +2,7 @@ extends Area2D
 
 @export var next_scene_path: String
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
