@@ -37,4 +37,4 @@ tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAI
 tile_set = SubResource("TileSet_lsmp6")
 
 [node name="Player" parent="." instance=ExtResource("1_vk57k")]
-position = Vector2(65, 202)
+position = Vector2(125, 198)
