@@ -1,86 +1,93 @@
 class_name Player extends CharacterBody2D
 
-# Physics
-var moveSpeed : float = 100.0
-var cardinalDirection : Vector2 = Vector2.DOWN
-var direction : Vector2 = Vector2.ZERO
-var gravity : float = 1.0
-# Animation
+# --- Physics Constants ---
+@export var moveSpeed : float = 200.0
+
+# These need to be @export so you can set them in the Inspector!
+@export var jumpHeight : float = 40.0
+@export var jumpTime2Peak : float = 0.35
+@export var jumpTime2Descent : float = 0.25
+
+# We calculate these only once when the game starts
+@onready var jumpVelocity : float = ((2.0 * jumpHeight) / jumpTime2Peak) * -1.0
+@onready var jumpGravity : float = ((-2.0 * jumpHeight) / (jumpTime2Peak * jumpTime2Peak)) * -1.0
+@onready var fallGravity : float = ((-2.0 * jumpHeight) / (jumpTime2Descent * jumpTime2Descent)) * -1.0
+
+# --- Animation/State ---
 var state : String = "IDLE"
 var updateAnimation : bool = true
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	# Optional: Print to check if math is working (remove later)
+	print("Jump Gravity: ", jumpGravity)
+	print("Fall Gravity: ", fallGravity)
 
+func _physics_process(delta: float) -> void:
+	# 1. Apply Gravity (Add to existing Y velocity, don't replace it)
+	velocity.y += GetGravity() * delta
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	velocity = direction * moveSpeed
-	if updateAnimation:
-		UpdateAnimation()
-	UpdateState()
-	pass
+	# 2. Get Horizontal Input (Walk)
+	# This replaces your old "direction" logic for X movement
+	var input_axis = Input.get_axis("left", "right")
+	velocity.x = input_axis * moveSpeed
 
-func _physics_process(_delta: float) -> void:
+	# 3. Handle Jump Input
+	# We use "is_action_just_pressed" so you don't bunny hop if you hold the button
+	if Input.is_action_just_pressed("up") and is_on_floor():
+		Jump()
+
+	# 4. Move
 	move_and_slide()
 
+	# 5. Handle Animation States
+	UpdateState(input_axis)
+	if updateAnimation:
+		UpdateAnimation()
 
-func SetDirection() -> bool:
-	return true
+func GetGravity() -> float:
+	# If moving up, use jump gravity. If moving down, use fall gravity.
+	return jumpGravity if velocity.y < 0.0 else fallGravity
 
-func UpdateState() -> void:
-	sprite.flip_h = velocity.x < 0
-	match direction:
-		Vector2.ZERO:
-			updateAnimation = state != "IDLE"
-			SetState("IDLE")
-			return
-		Vector2.UP:
-			updateAnimation = state != "JUMP"
-			SetState("JUMP")
-			return
-		Vector2.DOWN:
-			updateAnimation = state != "FALLING"
-			SetState("FALLING")
-			return
-		Vector2.LEFT:
-			updateAnimation = state != "WALK_LEFT"
-			SetState("WALK_LEFT")
-			return
-		Vector2.RIGHT:
-			updateAnimation = state != "WALK_RIGHT"
-			SetState("WALK_RIGHT")
-			return
-	return
+func Jump() -> void:
+	velocity.y = jumpVelocity
+
+func UpdateState(input_axis: float) -> void:
+	# 1. Handle Facing Direction
+	if input_axis != 0:
+		sprite.flip_h = input_axis < 0
+	
+	# 2. Determine State based on Physics (Air vs Ground)
+	var new_state = state
+
+	if not is_on_floor():
+		if velocity.y < 0:
+			new_state = "JUMP"
+		else:
+			new_state = "FALLING" # Or use same anim as jump if you prefer
+	else:
+		# We are on the ground
+		if input_axis != 0:
+			# We are walking. Decide if it's Left or Right animation
+			# Or just use a generic "WALK" and let flip_h handle direction
+			if input_axis > 0:
+				new_state = "WALK_RIGHT" 
+			else:
+				new_state = "WALK_LEFT"
+		else:
+			new_state = "IDLE"
+
+	# Only update if state actually changed
+	if new_state != state:
+		SetState(new_state)
+		updateAnimation = true
 
 func SetState(new_state : String) -> void:
 	state = new_state
-	return
 
 func UpdateAnimation() -> void:
 	updateAnimation = false
+	# Make sure these names match your AnimationPlayer names exactly!
 	animation_player.play(state)
-	return
-
-func GetAnimation() -> String:
-	
-	return ""
-
-func AnimationDirection() -> String:
-	match cardinalDirection:
-		Vector2.RIGHT:
-			return "RIGHT"
-		Vector2.LEFT:
-			return "LEFT"
-		Vector2.UP:
-			return "UP"	
-		Vector2.DOWN:
-			return "DOWN"	
-	
-	return "NULL"
