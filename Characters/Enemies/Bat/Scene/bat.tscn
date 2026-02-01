@@ -9,20 +9,20 @@
 radius = 68.0294
 
 [node name="Bat" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_ky2yh")
 
 [node name="BatHitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(1.8000007, 1.8400002)
 shape = SubResource("CircleShape2D_6r07y")
-disabled = true
 
 [node name="BatSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_yyswo")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 disable_mode = 1
-collision_layer = 3
-collision_mask = 3
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_ky2yh")

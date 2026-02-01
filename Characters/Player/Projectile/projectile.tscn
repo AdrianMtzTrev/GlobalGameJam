@@ -6,9 +6,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ioyp"]
 
 [node name="Projectile" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 9
 script = ExtResource("1_astas")
 
 [node name="CollisionProjectile" type="CollisionShape2D" parent="."]
+light_mask = 9
+visibility_layer = 16
 scale = Vector2(1.2, 1.2)
 shape = SubResource("CircleShape2D_6ioyp")
 

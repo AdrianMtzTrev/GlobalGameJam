@@ -193,6 +193,7 @@ position = Vector2(1018, 87.125)
 shape = SubResource("RectangleShape2D_u1skb")
 
 [node name="EntradaBoss1" type="Area2D" parent="."]
+collision_mask = 15
 script = ExtResource("10_82628")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntradaBoss1"]

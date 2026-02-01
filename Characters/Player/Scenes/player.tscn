@@ -701,7 +701,8 @@ size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utetp"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
 script = ExtResource("1_rg7kn")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

@@ -231,6 +231,7 @@ drag_bottom_margin = 0.76
 editor_draw_drag_margin = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 15
 script = ExtResource("8_af3po")
 next_scene_path = "res://Scenes/escena_2.tscn"
 
