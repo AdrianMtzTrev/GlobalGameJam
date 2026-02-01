@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=4 uid="uid://cxvyraos6dybr"]
 
-[ext_resource type="Script" path="res://UI/Scripts/Escena1.gd" id="1_af3po"]
+[ext_resource type="Script" uid="uid://dkwa1sp5nvohn" path="res://UI/Scripts/Escena1.gd" id="1_af3po"]
 [ext_resource type="PackedScene" uid="uid://b31sn14lgmi3d" path="res://Characters/Player/Scenes/player.tscn" id="1_vk57k"]
 [ext_resource type="Texture2D" uid="uid://cc4h8m17m33ii" path="res://Scenes/Tiles/Background_Night.png" id="1_wrinw"]
 [ext_resource type="Texture2D" uid="uid://duap106r30eq1" path="res://Scenes/Tiles/FONDO_001.png" id="1_xrdnt"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://b06ao76e4461v" path="res://UI/Lifes/Script/LifeManager.gd" id="7_lsmp6"]
 [ext_resource type="Texture2D" uid="uid://c5vjfe67u6a3g" path="res://Scenes/Tiles/VERDE_COLISION_001.png" id="7_uy8f0"]
 [ext_resource type="Texture2D" uid="uid://c2sbrutuuxxrt" path="res://Scenes/Tiles/ROJO_COLISION_001.png" id="8_6r07y"]
-[ext_resource type="Script" uid="uid://dcdr4y6dfipub" path="res://UI/Scripts/CambioScene1.gd" id="8_af3po"]
+[ext_resource type="Script" path="res://UI/Scripts/CambioScene1.gd" id="8_af3po"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uy8f0"]
 texture = ExtResource("1_wrinw")
