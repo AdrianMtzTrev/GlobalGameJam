@@ -19,6 +19,8 @@ var gravity : float = 980.0
 func _ready() -> void:
 	# Buscar al jugador automáticamente (Asegúrate de que tu Player tenga "class_name Player")
 	# O agrégalo a un grupo llamado "Player"
+	if not animation_player.animation_finished.is_connected(_on_animation_player_animation_finished):
+		animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
 		player_ref = players[0]

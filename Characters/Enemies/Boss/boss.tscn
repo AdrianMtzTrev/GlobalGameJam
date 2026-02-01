@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqw7g2nffqia6"]
+[gd_scene load_steps=16 format=3 uid="uid://dqw7g2nffqia6"]
 
 [ext_resource type="Texture2D" uid="uid://iix5r3a5v7d" path="res://Characters/Enemies/Boss/IDLE/Ahuizotle-idle-Sheet-Sheet-Sheet.png" id="1_km3dg"]
 [ext_resource type="Script" uid="uid://bdvdogl6w3tb3" path="res://Characters/Enemies/Boss/Boss-FSM.gd" id="1_pqubn"]
 [ext_resource type="Texture2D" uid="uid://toe5fgl3vs1q" path="res://Characters/Enemies/Boss/RUN/Ahuizotlee-run-Sheet.png" id="2_dx07o"]
 [ext_resource type="Texture2D" uid="uid://dr0scvrgvnsgs" path="res://Characters/Enemies/Boss/IDLE/Ahuizotle-Sheet.png" id="3_toq7y"]
 [ext_resource type="Texture2D" uid="uid://cwqrkjsx5vdtl" path="res://Characters/Enemies/Boss/DEATH/Ahuizotle-death-Sheet1-Sheet.png" id="3_xn863"]
+[ext_resource type="Texture2D" uid="uid://o1ltckkjmpld" path="res://Characters/Enemies/Boss/ATTACK/Ahuizotle-golpe-Sheet.png" id="6_q655d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dx07o"]
 size = Vector2(94, 103)
@@ -60,6 +61,59 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_pqubn"]
+resource_name = "FOUNDYOU"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_toq7y")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_km3dg"]
@@ -219,10 +273,9 @@ tracks/3/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_pqubn"]
-resource_name = "FOUNDYOU"
-length = 0.8
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_xn863"]
+resource_name = "ATTACK"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -233,7 +286,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_toq7y")]
+"values": [ExtResource("6_q655d")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -245,7 +298,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [4]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -266,14 +319,15 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_toq7y"]
 _data = {
+&"ATTACK": SubResource("Animation_xn863"),
 &"DEATH": SubResource("Animation_fjlcq"),
 &"FOUNDYOU": SubResource("Animation_pqubn"),
 &"IDLE": SubResource("Animation_km3dg"),
