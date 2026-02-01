@@ -66,7 +66,10 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("down"):
 			state = "FALLING"
 			position.y += 5 # Push down slightly
-			
+	
+	elif state == "HURT":
+		velocity.x = 0 # Stop moving completely while hurt
+		velocity.y += GetGravity() * delta # But still fall if in air
 	else:
 		# --- NORMAL BEHAVIOR ---
 		velocity.y += GetGravity() * delta
@@ -119,6 +122,9 @@ func UpdateState(input_axis: float) -> void:
 	# A. If we are currently Grabbing, ignore everything else
 	if state == "EDGE_GRAB":
 		return
+		
+	if state == "HURT":
+		return
 
 	# B. If we are currently Landing, wait!
 	if state == "LAND":
@@ -151,11 +157,14 @@ func UpdateState(input_axis: float) -> void:
 		
 		# 2. Normal Ground Movement
 		elif input_axis != 0 and abs(velocity.x) > 5.0:
-			if input_axis > 0: new_state = "RUN" 
-			else: new_state = "RUN"
+			new_state = "RUN"
 		else:
-			# Only go to IDLE if we aren't currently playing LAND
-			if state != "LAND":
+			# CHECK: Were we running just a moment ago?
+			if state == "RUN":
+				new_state = "TAUNT" # Trigger the Taunt!
+			
+			# If we aren't Landing or Taunting, go to Idle
+			elif state != "LAND" and state != "TAUNT":
 				new_state = "IDLE"
 
 	# Only update if state actually changed
@@ -165,12 +174,15 @@ func UpdateState(input_axis: float) -> void:
 
 func SetState(new_state : String) -> void:
 	state = new_state
+	updateAnimation = true
+	print(state)
 
 func UpdateAnimation() -> void:
 	updateAnimation = false
 	animation_player.play(state)
 
 func TakeDamage():
+	SetState("HURT")
 	health -= 1
 	signal_healthChanged.emit(health) 
 
@@ -184,10 +196,13 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "LAND":
 		TakeDamage()
 		SetState("IDLE")
-		updateAnimation = true
 	if anim_name == "DEATH":
 		playerSprite.visible = false
 		SetState("IDLE")
-		updateAnimation = true
 		await Fade.fade_to_black(0.25)
 		get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
+	if anim_name == "TAUNT":
+		SetState("IDLE")
+	if anim_name == "HURT":
+		SetState("IDLE")
+		
