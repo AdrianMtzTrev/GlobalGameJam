@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://cxvyraos6dybr"]
+[gd_scene load_steps=12 format=4 uid="uid://cxvyraos6dybr"]
 
 [ext_resource type="Texture2D" uid="uid://b8fqvytec0in4" path="res://Scenes/Tiles/Bakcground_Temple.png" id="1_8ffim"]
 [ext_resource type="PackedScene" uid="uid://b31sn14lgmi3d" path="res://Characters/Player/Scenes/player.tscn" id="1_vk57k"]
 [ext_resource type="Texture2D" uid="uid://bnclcxlduuxft" path="res://Scenes/Tiles/Foreground.png" id="2_xfk5q"]
 [ext_resource type="Script" uid="uid://dcdr4y6dfipub" path="res://Scenes/CambioScene1.gd" id="4_7p6j4"]
+[ext_resource type="PackedScene" uid="uid://dqw7g2nffqia6" path="res://Characters/Enemies/Boss/boss.tscn" id="5_boss"]
+[ext_resource type="Texture2D" uid="uid://bq1ce3i0fv6aa" path="res://Objects/Lifes/Mask-lifes.png" id="6_evi0p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7p6j4"]
 texture = ExtResource("1_8ffim")
@@ -62,5 +64,16 @@ next_scene_path = "res://Scenes/escena_2.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(512, 278)
 shape = SubResource("RectangleShape2D_6444e")
+
+[node name="Boss" parent="." instance=ExtResource("5_boss")]
+position = Vector2(328, 95)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_evi0p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
