@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6v52kh6xer4i"
-path="res://.godot/imported/Sprite_Hurt-Sheet.png-25899ca9713ab2e3f3dc5031e1f87907.ctex"
+uid="uid://cts4gjrliupun"
+path="res://.godot/imported/Player Idle 48x48.png-5f31faf2f5fde4485dc9bbde5d84d778.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Player/Sprites/Hurt/Sprite_Hurt-Sheet.png"
-dest_files=["res://.godot/imported/Sprite_Hurt-Sheet.png-25899ca9713ab2e3f3dc5031e1f87907.ctex"]
+source_file="res://Characters/Player/Sprites/Idle/Player Idle 48x48.png"
+dest_files=["res://.godot/imported/Player Idle 48x48.png-5f31faf2f5fde4485dc9bbde5d84d778.ctex"]
 
 [params]
 

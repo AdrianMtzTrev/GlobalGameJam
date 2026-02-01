@@ -19,7 +19,7 @@ const DAMAGE : float = 1
 @onready var fallGravity : float = ((-2.0 * jumpHeight) / (jumpTime2Descent * jumpTime2Descent)) * -1.0
 
 # Health
-var health : int = HEARTS_MASKS * HEARTS_MASKS_RESITANCE
+var health : int = 100
 signal signal_healthChanged(health)
 
 # --- Animation/State ---
@@ -41,9 +41,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if !isAlive():
-		SetState("DEATH")
-		UpdateAnimation()
-		state = ""
 		return
 	var input_axis = Input.get_axis("left", "right")
 	# 1. Flip Directions (LOCKED while grabbing)
@@ -108,55 +105,31 @@ func Jump() -> void:
 	velocity.y = jumpVelocity
 
 func UpdateState(input_axis: float) -> void:
-	# Handle Facing Direction
-	if input_axis != 0:
-		playerSprite.flip_h = input_axis < 0
-		if state != "EDGE_GRAB":
-			ledge_check.scale.x = input_axis
-
-	# --- SPECIAL CHECKS ---
-	
-	# A. If we are currently Grabbing, ignore everything else
+	# If grabbing, don't let Run/Idle override it
 	if state == "EDGE_GRAB":
 		return
 
-	# B. If we are currently Landing, wait!
-	if state == "LAND":
-		# OPTION 1: Interrupt landing if player moves (Smooth)
-		if input_axis != 0:
-			pass # Let the code below switch us to RUN
-		# OPTION 2: Freeze until anim finishes (Heavy)
-		else:
-			return # Stop here, don't go to IDLE yet
-
-	# --- MAIN LOGIC ---
+	# Handle Facing Direction Visuals
+	if input_axis != 0:
+		playerSprite.flip_h = input_axis < 0
+	
+	# Determine State based on Physics (Air vs Ground)
 	var new_state = state
 
 	if not is_on_floor():
-		# AIR LOGIC
 		if velocity.y < 0:
 			new_state = "JUMP"
 		else:
 			new_state = "FALLING"
 	else:
-		# GROUND LOGIC
-		# 1. Did we JUST hit the ground?
-		if state == "FALLING": 
-			if input_axis == 0:
-				new_state = "LAND" # Play landing anim
+		if input_axis != 0 and abs(velocity.x) > 5.0:
+			if input_axis > 0:
+				new_state = "RUN" 
 			else:
-				# If we land while holding a key, skip LAND and go straight to RUN
-				if input_axis > 0: new_state = "RUN" 
-				else: new_state = "RUN"
-		
-		# 2. Normal Ground Movement
-		elif input_axis != 0 and abs(velocity.x) > 5.0:
-			if input_axis > 0: new_state = "RUN" 
-			else: new_state = "RUN"
+				new_state = "RUN"
 		else:
-			# Only go to IDLE if we aren't currently playing LAND
-			if state != "LAND":
-				new_state = "IDLE"
+			# We are either not pressing keys OR pushing a wall
+			new_state = "IDLE"
 
 	# Only update if state actually changed
 	if new_state != state:
@@ -177,17 +150,6 @@ func TakeDamage():
 func isAlive():
 	return health > 0
 
-func _on_body_entered(_body: Node2D) -> void:
-	pass # Replace with function body.
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "LAND":
-		TakeDamage()
-		SetState("IDLE")
-		updateAnimation = true
-	if anim_name == "DEATH":
-		playerSprite.visible = false
-		SetState("IDLE")
-		updateAnimation = true
-		await Fade.fade_to_black(0.25)
-		get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
+func _on_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
