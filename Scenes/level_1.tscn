@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=4 uid="uid://cxvyraos6dybr"]
+[gd_scene load_steps=21 format=4 uid="uid://cxvyraos6dybr"]
 
+[ext_resource type="Script" uid="uid://dkwa1sp5nvohn" path="res://UI/Scripts/Escena1.gd" id="1_af3po"]
 [ext_resource type="PackedScene" uid="uid://b31sn14lgmi3d" path="res://Characters/Player/Scenes/player.tscn" id="1_vk57k"]
 [ext_resource type="Texture2D" uid="uid://cc4h8m17m33ii" path="res://Scenes/Tiles/Background_Night.png" id="1_wrinw"]
 [ext_resource type="Texture2D" uid="uid://duap106r30eq1" path="res://Scenes/Tiles/FONDO_001.png" id="1_xrdnt"]
@@ -130,6 +131,7 @@ sources/2 = SubResource("TileSetAtlasSource_6r07y")
 size = Vector2(34, 15)
 
 [node name="Escena1" type="Node2D"]
+script = ExtResource("1_af3po")
 
 [node name="TilemapLayers" type="Node2D" parent="."]
 position = Vector2(0, 5)
