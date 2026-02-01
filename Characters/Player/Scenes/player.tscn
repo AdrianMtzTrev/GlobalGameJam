@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://b31sn14lgmi3d"]
+[gd_scene load_steps=23 format=3 uid="uid://b31sn14lgmi3d"]
 
 [ext_resource type="Texture2D" uid="uid://cts4gjrliupun" path="res://Characters/Player/Sprites/Idle/Player Idle 48x48.png" id="1_i823h"]
 [ext_resource type="Script" uid="uid://b0nt1jqqmhaxw" path="res://Characters/Player/Scripts/player.gd" id="1_rg7kn"]
 [ext_resource type="Texture2D" uid="uid://boty1glhbpvmd" path="res://Characters/Player/Sprites/Walk/PlayerWalk 48x48.png" id="3_52sos"]
-[ext_resource type="Texture2D" uid="uid://djk2g4mpehk0f" path="res://Characters/Player/Sprites/Jump/player jump left 48x48-sheet.png" id="4_omv0o"]
 [ext_resource type="Texture2D" uid="uid://drq4uv8eo5j76" path="res://Characters/Player/Sprites/Idle/MC_Idle_Spritesheet48x48.png" id="4_utetp"]
 [ext_resource type="Texture2D" uid="uid://ds5lmkqvcy2rb" path="res://Characters/Player/Sprites/Run/player run 48x48.png" id="5_bw35f"]
 [ext_resource type="Texture2D" uid="uid://b6n1f6xrjay56" path="res://Characters/Player/Sprites/Jump/Jump_Sprite_MC-Sheet.png" id="5_egfbo"]
@@ -26,7 +25,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_omv0o")]
+"values": [ExtResource("5_egfbo")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -50,7 +49,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [3, 5, 4]
+"values": [3, 4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_rg7kn"]
