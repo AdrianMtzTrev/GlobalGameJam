@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cuetgm6p0jjqt"]
+[gd_scene load_steps=15 format=4 uid="uid://cuetgm6p0jjqt"]
 
 [ext_resource type="Script" uid="uid://13ml85adgt1e" path="res://UI/Scripts/EscenaBoss1_Fade.gd" id="1_4dxgg"]
 [ext_resource type="Texture2D" uid="uid://cckxemquub1hd" path="res://Scenes/Tiles/FONDO_003.png" id="1_ycgqh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6krqld0jmkc7" path="res://Scenes/Tiles/ATLAS_COLISION_003.png" id="3_p2lh5"]
 [ext_resource type="PackedScene" uid="uid://b31sn14lgmi3d" path="res://Characters/Player/Scenes/player.tscn" id="4_nrfyx"]
 [ext_resource type="Script" uid="uid://p3xioaydu0q3" path="res://UI/EntradaBoss1.gd" id="6_p2lh5"]
+[ext_resource type="Script" uid="uid://b8h8lxmtigkpe" path="res://UI/Scripts/Back_Escena2.gd" id="7_nrfyx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smhjq"]
 texture = ExtResource("1_ycgqh")
@@ -62,7 +63,10 @@ sources/0 = SubResource("TileSetAtlasSource_8hb0r")
 sources/1 = SubResource("TileSetAtlasSource_4i75n")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrfyx"]
-size = Vector2(150.5, 45)
+size = Vector2(139.5, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smhjq"]
+size = Vector2(37.5, 47.5)
 
 [node name="EscenaBoss1" type="Node2D"]
 script = ExtResource("1_4dxgg")
@@ -80,6 +84,8 @@ tile_set = SubResource("TileSet_t5esc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(120, 135)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 drag_horizontal_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("4_nrfyx")]
@@ -91,11 +97,21 @@ pasillo_camera = NodePath("../Camera2D")
 player_camera = NodePath("../Camera2D2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-49.25, 232.5)
+position = Vector2(-54.75, 232.5)
 shape = SubResource("RectangleShape2D_nrfyx")
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 position = Vector2(240, 136)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("7_nrfyx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-104.75, 232.75)
+shape = SubResource("RectangleShape2D_smhjq")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
