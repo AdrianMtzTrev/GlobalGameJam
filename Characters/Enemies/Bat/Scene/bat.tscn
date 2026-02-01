@@ -32,13 +32,13 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_ky2yh")
 
-[node name="AttackArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="Hurtbox" type="Area2D" parent="." groups=["Enemie"]]
+collision_layer = 8
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" groups=["Enemie"]]
 shape = SubResource("CircleShape2D_1voko")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_attack_area_body_entered"]

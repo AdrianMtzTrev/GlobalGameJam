@@ -2,36 +2,24 @@ extends Node2D
 
 const SPEED : int = 300
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	return # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position += transform.x * SPEED * delta
-	return
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
-	return
 
-func _on_area_entered(area):
-	# Si el área que tocamos se llama "Hurtbox", es el punto débil del Boss
+# --- CONECTA ESTA SEÑAL: "area_entered" ---
+# Esta función se encarga de MATAR AL ENEMIGO
+func _on_area_2d_area_entered(area):
 	if area.name == "Hurtbox":
-		# Buscamos al padre del Hurtbox (que es el Boss) y le hacemos daño
-		var boss = area.get_parent()
-		if boss.has_method("TakeDamage"):
-			boss.TakeDamage(1)
-			queue_free() # El proyectil desaparece al impactar
+		var enemy = area.get_parent()
+		if enemy.has_method("TakeDamage"):
+			enemy.TakeDamage(1)
+			queue_free() # Borra la bala
 
-
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	# CAMBIO AQUÍ: Preguntamos si pertenece al grupo, no si "es" la clase
-	if body.is_in_group("Enemie"): 
-		if body.has_method("TakeDamage"):
-			# OJO: Revisa si tu Boss pide un número (ej. TakeDamage(1))
-			body.TakeDamage(1) 
-			# Importante: Destruir el proyectil al impactar
-			queue_free()
+# --- CONECTA ESTA SEÑAL: "body_entered" ---
+# Esta función se encarga de CHOCAR CON PAREDES
+func _on_area_2d_body_entered(body):
+	# Si choca con el mapa (Foreground) o cualquier objeto sólido
+	print("Choque con pared: ", body.name)
+	queue_free() # Borra la bala
