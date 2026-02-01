@@ -169,11 +169,12 @@ position = Vector2(512, 278)
 shape = SubResource("RectangleShape2D_6444e")
 
 [node name="Boss" parent="." instance=ExtResource("5_boss")]
-position = Vector2(328, 95)
+position = Vector2(329, 80)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthContainer" type="Node2D" parent="CanvasLayer" node_paths=PackedStringArray("player_ref")]
+position = Vector2(1, 0)
 script = ExtResource("7_lsmp6")
 heart_texture = ExtResource("6_evi0p")
 player_ref = NodePath("../../Player")
