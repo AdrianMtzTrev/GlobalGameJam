@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bef3kyglpjy5j"]
+[gd_scene load_steps=23 format=4 uid="uid://bef3kyglpjy5j"]
 
 [ext_resource type="Texture2D" uid="uid://bnclcxlduuxft" path="res://Scenes/Tiles/Foreground.png" id="1_1pvkb"]
 [ext_resource type="Texture2D" uid="uid://duap106r30eq1" path="res://Scenes/Tiles/FONDO_001.png" id="1_hhhyq"]
@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cckxemquub1hd" path="res://Scenes/Tiles/FONDO_003.png" id="3_ht3ar"]
 [ext_resource type="Texture2D" uid="uid://b6krqld0jmkc7" path="res://Scenes/Tiles/ATLAS_COLISION_003.png" id="6_t3toy"]
 [ext_resource type="Texture2D" uid="uid://cqbgqmqrbjwp5" path="res://Scenes/Tiles/OBJETOS_001.png" id="7_xm3ph"]
-[ext_resource type="Script" uid="uid://j75jnpn7jvg5" path="res://Scenes/Change_Camera.gd" id="9_futaa"]
+[ext_resource type="Script" path="res://Scenes/Change_Camera.gd" id="9_futaa"]
+[ext_resource type="Script" path="res://Scenes/CambioScene_Boss1.gd" id="10_u1skb"]
 [ext_resource type="Script" uid="uid://b06ao76e4461v" path="res://UI/Lifes/Script/LifeManager.gd" id="10_yc7pe"]
-[ext_resource type="Script" uid="uid://c0wq2i4w6xylv" path="res://Scenes/CambioScene_Boss1.gd" id="10_u1skb"]
 [ext_resource type="Texture2D" uid="uid://ti0wquydbfpg" path="res://UI/Lifes/Mask-lifes-complete.png" id="11_82628"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_221c6"]
@@ -191,13 +191,17 @@ next_scene_path = "res://Scenes/escena_Boss1.tscn"
 position = Vector2(999, 88.25)
 shape = SubResource("RectangleShape2D_yc7pe")
 
-[node name="Area2D2" type="Area2D" parent="."]
-script = ExtResource("10_u1skb")
-next_scene_path = "res://Scenes/escena_Boss1.tscn"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(999, 88.25)
 shape = SubResource("RectangleShape2D_yc7pe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthContainer" type="Node2D" parent="CanvasLayer" node_paths=PackedStringArray("player_ref")]
+position = Vector2(1, 0)
+script = ExtResource("10_yc7pe")
+heart_texture = ExtResource("11_82628")
+player_ref = NodePath("../../Player")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
