@@ -28,9 +28,10 @@ func _on_area_entered(area):
 
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	# Verificamos si lo que tocamos es el Jugador
-	if body is Enemie: # Gracias a que pusiste "class_name Player" en tu script
-		# Verificamos que el jugador tenga la función de recibir daño
+	# CAMBIO AQUÍ: Preguntamos si pertenece al grupo, no si "es" la clase
+	if body.is_in_group("Enemie"): 
 		if body.has_method("TakeDamage"):
-			body.TakeDamage() 
-			# Opcional: Empujar al jugador (Knockback) si quisieras
+			# OJO: Revisa si tu Boss pide un número (ej. TakeDamage(1))
+			body.TakeDamage(1) 
+			# Importante: Destruir el proyectil al impactar
+			queue_free()
