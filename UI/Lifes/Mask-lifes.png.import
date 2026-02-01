@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bq1ce3i0fv6aa"
-path="res://.godot/imported/Mask-lifes.png-b01fc2f8e8a2bdb00f4339e24b66cddf.ctex"
+path="res://.godot/imported/Mask-lifes.png-7b16272501a603c936c885cb2d921bf2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/Lifes/Mask-lifes.png"
-dest_files=["res://.godot/imported/Mask-lifes.png-b01fc2f8e8a2bdb00f4339e24b66cddf.ctex"]
+source_file="res://UI/Lifes/Mask-lifes.png"
+dest_files=["res://.godot/imported/Mask-lifes.png-7b16272501a603c936c885cb2d921bf2.ctex"]
 
 [params]
 

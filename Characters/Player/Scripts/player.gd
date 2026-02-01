@@ -1,8 +1,12 @@
 class_name Player extends CharacterBody2D
 
-# --- Physics Constants ---
-const RUN_SPEED = 150.0
+# CONSTANTS
+const HEARTS_MASKS : int = 3
+const HEARTS_MASKS_RESITANCE : int = 2
+const RUN_SPEED : float = 150.0
+const DAMAGE : float = 1
 
+# --- Physics Constants ---
 @export var moveSpeed : float = 150.0
 
 @export var jumpHeight : float = 40.0
@@ -13,6 +17,10 @@ const RUN_SPEED = 150.0
 @onready var jumpVelocity : float = ((2.0 * jumpHeight) / jumpTime2Peak) * -1.0
 @onready var jumpGravity : float = ((-2.0 * jumpHeight) / (jumpTime2Peak * jumpTime2Peak)) * -1.0
 @onready var fallGravity : float = ((-2.0 * jumpHeight) / (jumpTime2Descent * jumpTime2Descent)) * -1.0
+
+# Health
+var health : int = 100
+signal signal_healthChanged(health)
 
 # --- Animation/State ---
 var state : String = "IDLE"
@@ -25,6 +33,9 @@ func _ready() -> void:
 	return
 
 func _physics_process(delta: float) -> void:
+	if !isAlive():
+		return
+	
 	# Apply Gravity (Add to existing Y velocity, don't replace it)
 	velocity.y += GetGravity() * delta
 
@@ -87,3 +98,10 @@ func SetState(new_state : String) -> void:
 func UpdateAnimation() -> void:
 	updateAnimation = false
 	animation_player.play(state)
+
+func TakeDamage():
+	health -= 1
+	signal_healthChanged.emit(health) # Shout the signal so the UI can hear it
+
+func isAlive():
+	return health > 0
