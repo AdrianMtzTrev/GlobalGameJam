@@ -124,9 +124,9 @@ func UpdateState(input_axis: float) -> void:
 	else:
 		if input_axis != 0 and abs(velocity.x) > 5.0:
 			if input_axis > 0:
-				new_state = "RUN_RIGHT" 
+				new_state = "RUN" 
 			else:
-				new_state = "RUN_LEFT"
+				new_state = "RUN"
 		else:
 			# We are either not pressing keys OR pushing a wall
 			new_state = "IDLE"
