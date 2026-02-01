@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3ik1laft2qbu"]
+[gd_scene load_steps=4 format=3 uid="uid://b3ik1laft2qbu"]
+
+[ext_resource type="Script" uid="uid://dwoc71t1i5dk2" path="res://UI/MainMenu/muerte1.gd" id="1_0suel"]
+[ext_resource type="Script" uid="uid://dsbbqsx1jq3mh" path="res://UI/MainMenu/Muerte.gd" id="1_stc6p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f5uxx"]
 font_size = 32
@@ -10,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0suel")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -51,3 +55,6 @@ grow_vertical = 0
 layout_mode = 2
 text = "Volver
 "
+script = ExtResource("1_stc6p")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]

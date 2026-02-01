@@ -203,4 +203,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		playerSprite.visible = false
 		SetState("IDLE")
 		await Fade.fade_to_black(0.25)
-		get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
+		get_tree().change_scene_to_file("res://UI/MainMenu/muerte.tscn")
