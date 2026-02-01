@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://7lhd8aquaolp"]
+
+[ext_resource type="Texture2D" uid="uid://bygggdnqqfql1" path="res://Characters/Enemies/Spider/Sprite/ArañaAsset.png" id="1_yif7w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_it0i5"]
+size = Vector2(25, 24)
+
+[node name="Spider" type="CharacterBody2D"]
+
+[node name="SpiderHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(1.2391304, 1.1808511)
+shape = SubResource("RectangleShape2D_it0i5")
+
+[node name="SpiderSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_yif7w")
