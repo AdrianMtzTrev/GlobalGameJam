@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1artx0w54ccy"]
+
+[ext_resource type="Texture2D" uid="uid://cqcslsw8q8eft" path="res://UI/MainMenu/Assets/EL TEMPLO DE LAS MÁSCARAS.png" id="1_k7f4m"]
+[ext_resource type="Texture2D" uid="uid://bwfjkfugur253" path="res://UI/MainMenu/Assets/EL TEMPLO DE LAS MÁSCARAS START.png" id="2_vxkf2"]
+[ext_resource type="Script" uid="uid://cbp6uiwkbtbki" path="res://UI/Scripts/texture_button.gd" id="3_62lfh"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_k7f4m")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -10.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
+custom_minimum_size = Vector2(120, 22)
+layout_direction = 2
+layout_mode = 2
+size_flags_stretch_ratio = 1.78
+texture_normal = ExtResource("2_vxkf2")
+ignore_texture_size = true
+stretch_mode = 6
+script = ExtResource("3_62lfh")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TextureButton" to="CenterContainer/VBoxContainer/TextureButton" method="_on_pressed"]
