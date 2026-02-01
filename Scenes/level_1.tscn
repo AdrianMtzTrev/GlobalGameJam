@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cc4h8m17m33ii" path="res://Scenes/Tiles/Background_Night.png" id="1_wrinw"]
 [ext_resource type="Texture2D" uid="uid://duap106r30eq1" path="res://Scenes/Tiles/FONDO_001.png" id="1_xrdnt"]
 [ext_resource type="Texture2D" uid="uid://bnclcxlduuxft" path="res://Scenes/Tiles/Foreground.png" id="2_xfk5q"]
-[ext_resource type="Texture2D" uid="uid://b6krqld0jmkc7" path="res://Scenes/Tiles/ATLAS_COLISION_003.png" id="3_wrinw"]
+[ext_resource type="Texture2D" uid="uid://b6krqld0jmkc7" path="res://Scenes/ATLAS_COLISION_003.png" id="3_wrinw"]
 [ext_resource type="Script" uid="uid://dcdr4y6dfipub" path="res://Scenes/CambioScene1.gd" id="4_7p6j4"]
 [ext_resource type="PackedScene" uid="uid://dqw7g2nffqia6" path="res://Characters/Enemies/Boss/boss.tscn" id="5_boss"]
 [ext_resource type="Texture2D" uid="uid://cqbgqmqrbjwp5" path="res://Scenes/Tiles/OBJETOS_001.png" id="5_chwpn"]
@@ -178,5 +178,4 @@ script = ExtResource("7_lsmp6")
 heart_texture = ExtResource("6_evi0p")
 player_ref = NodePath("../../Player")
 
-[connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Player" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
