@@ -91,3 +91,12 @@ func attack(delta):
 
 	velocity = attack_dir * attack_speed
 	move_and_slide()
+
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	# Verificamos si lo que tocamos es el Jugador
+	if body is Player: # Gracias a que pusiste "class_name Player" en tu script
+		# Verificamos que el jugador tenga la función de recibir daño
+		if body.has_method("TakeDamage"):
+			body.TakeDamage() 
+			# Opcional: Empujar al jugador (Knockback) si quisieras

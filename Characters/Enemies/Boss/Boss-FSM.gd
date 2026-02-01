@@ -110,3 +110,12 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		
 	if anim_name == "DEATH":
 		queue_free() # Desaparecer al Boss
+
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	# Verificamos si lo que tocamos es el Jugador
+	if body is Player: # Gracias a que pusiste "class_name Player" en tu script
+		# Verificamos que el jugador tenga la función de recibir daño
+		if body.has_method("TakeDamage"):
+			body.TakeDamage() 
+			# Opcional: Empujar al jugador (Knockback) si quisieras

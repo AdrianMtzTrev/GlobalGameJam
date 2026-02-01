@@ -25,3 +25,12 @@ func _on_area_entered(area):
 		if boss.has_method("TakeDamage"):
 			boss.TakeDamage(1)
 			queue_free() # El proyectil desaparece al impactar
+
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	# Verificamos si lo que tocamos es el Jugador
+	if body is Enemie: # Gracias a que pusiste "class_name Player" en tu script
+		# Verificamos que el jugador tenga la función de recibir daño
+		if body.has_method("TakeDamage"):
+			body.TakeDamage() 
+			# Opcional: Empujar al jugador (Knockback) si quisieras

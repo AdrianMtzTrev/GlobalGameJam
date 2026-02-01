@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqw7g2nffqia6"]
+[gd_scene load_steps=17 format=3 uid="uid://dqw7g2nffqia6"]
 
 [ext_resource type="Texture2D" uid="uid://iix5r3a5v7d" path="res://Characters/Enemies/Boss/IDLE/Ahuizotle-idle-Sheet-Sheet-Sheet.png" id="1_km3dg"]
 [ext_resource type="Script" uid="uid://bdvdogl6w3tb3" path="res://Characters/Enemies/Boss/Boss-FSM.gd" id="1_pqubn"]
@@ -338,7 +338,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqubn"]
 size = Vector2(103, 106)
 
-[node name="Boss" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q655d"]
+size = Vector2(41, 55)
+
+[node name="Boss" type="Node2D" groups=["Enemie"]]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 4
@@ -366,3 +369,13 @@ collision_mask = 0
 [node name="DamageReciver" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
 position = Vector2(4.5, -10)
 shape = SubResource("RectangleShape2D_pqubn")
+
+[node name="AttackArea" type="Area2D" parent="CharacterBody2D" groups=["Enemie"]]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackArea"]
+position = Vector2(-44, 17)
+shape = SubResource("RectangleShape2D_q655d")
+
+[connection signal="body_entered" from="CharacterBody2D/AttackArea" to="CharacterBody2D" method="_on_attack_area_body_entered"]
