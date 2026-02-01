@@ -11,12 +11,18 @@ var state: State = State.IDLE
 @export var float_amplitude := 8.0
 @export var float_speed := 2.0
 @export var follow_speed := 60.0
+@export var attack_speed := 220.0
+@export var attack_range := 40.0
+@export var attack_duration := 0.25
+
+var attack_dir := Vector2.ZERO
+var attack_timer := 0.0
 
 var start_y: float
 var time := 0.0
 var player: Node2D = null
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $BatSprite
 
 
 func _ready():
@@ -30,7 +36,7 @@ func _physics_process(delta):
 		State.FOLLOW:
 			follow_player(delta)
 		State.ATTACK:
-			pass
+			attack(delta)
 
 
 func idle_float(delta):
@@ -45,10 +51,43 @@ func follow_player(delta):
 		start_y = global_position.y
 		return
 
-	var dir = (player.global_position - global_position).normalized()
-	velocity = dir * follow_speed
+	var to_player = player.global_position - global_position
+	var dir = to_player.normalized()
 
-	# Voltear sprite según dirección
+	# Voltear sprite
 	sprite.flip_h = dir.x > 0
 
+	# ¿Está a rango de ataque?
+	if to_player.length() <= attack_range:
+		start_attack(dir)
+		return
+
+	# Seguir al jugador
+	velocity = dir * follow_speed
+	move_and_slide()
+
+func _on_detection_area_body_entered(body: Node2D) -> void:
+		if body.name == "Player":
+			player = body
+			state = State.FOLLOW
+
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	if body == player:
+		player = null
+		state = State.IDLE
+		start_y = global_position.y
+		
+func start_attack(dir: Vector2):
+	state = State.ATTACK
+	attack_dir = dir
+	attack_timer = attack_duration
+	
+func attack(delta):
+	attack_timer -= delta
+
+	if attack_timer <= 0:
+		state = State.FOLLOW
+		return
+
+	velocity = attack_dir * attack_speed
 	move_and_slide()

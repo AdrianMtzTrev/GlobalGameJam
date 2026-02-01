@@ -224,16 +224,16 @@ position = Vector2(-584, 116)
 position = Vector2(-297, 62)
 
 [node name="Bat3" parent="." instance=ExtResource("8_io0ov")]
-position = Vector2(2, 74)
+position = Vector2(-8, 125)
 
 [node name="Bat4" parent="." instance=ExtResource("8_io0ov")]
-position = Vector2(299, 67)
+position = Vector2(430, 149)
 
 [node name="Bat5" parent="." instance=ExtResource("8_io0ov")]
 position = Vector2(707, 114)
 
 [node name="Bat6" parent="." instance=ExtResource("8_io0ov")]
-position = Vector2(237, 183)
+position = Vector2(230, 208)
 
 [node name="Bat7" parent="." instance=ExtResource("8_io0ov")]
 position = Vector2(17, 341)
