@@ -665,12 +665,12 @@ libraries = {
 
 [node name="LedgeGrab" type="ShapeCast2D" parent="."]
 position = Vector2(0, -18)
-scale = Vector2(1.0000002, 1e-05)
+scale = Vector2(1.0868939, 1.36335075e-05)
 shape = SubResource("RectangleShape2D_ublsl")
 
 [node name="WallCheck" type="ShapeCast2D" parent="."]
-position = Vector2(0, -14.000001)
-scale = Vector2(0.7839992, 0.23999903)
+position = Vector2(0, -16)
+scale = Vector2(0.86399966, 0.159999)
 shape = SubResource("RectangleShape2D_utetp")
 target_position = Vector2(0, 0)
 
