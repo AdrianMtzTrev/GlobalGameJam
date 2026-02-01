@@ -738,4 +738,7 @@ collision_mask = 2
 scale = Vector2(0.1, 0.1)
 script = ExtResource("12_hylpr")
 
+[node name="Marker2D" type="Marker2D" parent="FiringSpawn"]
+position = Vector2(309.99997, 0)
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
