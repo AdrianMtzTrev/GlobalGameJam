@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cckxemquub1hd" path="res://Scenes/Tiles/FONDO_003.png" id="3_ht3ar"]
 [ext_resource type="Texture2D" uid="uid://b6krqld0jmkc7" path="res://Scenes/Tiles/ATLAS_COLISION_003.png" id="6_t3toy"]
 [ext_resource type="Texture2D" uid="uid://cqbgqmqrbjwp5" path="res://Scenes/Tiles/OBJETOS_001.png" id="7_xm3ph"]
-[ext_resource type="Script" uid="uid://j75jnpn7jvg5" path="res://UI/Scripts/Change_Camera.gd" id="9_futaa"]
-[ext_resource type="Script" uid="uid://c0wq2i4w6xylv" path="res://UI/Scripts/CambioScene_Boss1.gd" id="10_u1skb"]
+[ext_resource type="Script" path="res://UI/Scripts/Change_Camera.gd" id="9_futaa"]
+[ext_resource type="Script" path="res://UI/Scripts/CambioScene_Boss1.gd" id="10_82628"]
 [ext_resource type="Script" uid="uid://b06ao76e4461v" path="res://UI/Lifes/Script/LifeManager.gd" id="10_yc7pe"]
 [ext_resource type="Texture2D" uid="uid://ti0wquydbfpg" path="res://UI/Lifes/Mask-lifes-complete.png" id="11_82628"]
 
@@ -191,7 +191,7 @@ position = Vector2(1018, 87.125)
 shape = SubResource("RectangleShape2D_u1skb")
 
 [node name="Area2D2" type="Area2D" parent="."]
-script = ExtResource("10_u1skb")
+script = ExtResource("10_82628")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(999, 88.25)
