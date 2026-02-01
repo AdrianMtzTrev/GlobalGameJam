@@ -13,6 +13,7 @@ scale = Vector2(1.2, 1.2)
 shape = SubResource("CircleShape2D_6ioyp")
 
 [node name="SpriteProjectile" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_1wbrs")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
