@@ -9,7 +9,7 @@ const DAMAGE : float = 1
 # --- Physics Constants ---
 @export var moveSpeed : float = 150.0
 
-@export var jumpHeight : float = 40.0
+@export var jumpHeight : float = 45.0
 @export var jumpTime2Peak : float = 0.35
 @export var jumpTime2Descent : float = 0.25
 

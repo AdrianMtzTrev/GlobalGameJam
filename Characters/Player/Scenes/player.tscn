@@ -667,11 +667,13 @@ libraries = {
 position = Vector2(0, -18)
 scale = Vector2(1.0868939, 1.36335075e-05)
 shape = SubResource("RectangleShape2D_ublsl")
+collision_mask = 2
 
 [node name="WallCheck" type="ShapeCast2D" parent="."]
 position = Vector2(0, -16)
 scale = Vector2(0.86399966, 0.159999)
 shape = SubResource("RectangleShape2D_utetp")
 target_position = Vector2(0, 0)
+collision_mask = 2
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
