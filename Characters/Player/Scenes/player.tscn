@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b31sn14lgmi3d"]
+[gd_scene load_steps=31 format=3 uid="uid://b31sn14lgmi3d"]
 
 [ext_resource type="Texture2D" uid="uid://cts4gjrliupun" path="res://Characters/Player/Sprites/Idle/MC_Idle_Spritesheet48x48.png" id="1_i823h"]
 [ext_resource type="Script" uid="uid://b0nt1jqqmhaxw" path="res://Characters/Player/Scripts/player.gd" id="1_rg7kn"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://1dv2ieqv3828" path="res://Characters/Player/Sprites/Dash/dash-Sheet.png" id="10_07qib"]
 [ext_resource type="Texture2D" uid="uid://bulme1bn63kqu" path="res://Characters/Player/Sprites/Run/MCbase_taunt_Spritesheet48x48.png" id="10_o60e6"]
 [ext_resource type="Texture2D" uid="uid://jaa6up4dq6bg" path="res://Characters/Player/Sprites/Attack/Attack_MC_Spritesheet.png" id="11_o60e6"]
+[ext_resource type="Script" uid="uid://hfiv5ifn6kvr" path="res://Characters/Player/Projectile/ProjectileManager.gd" id="12_hylpr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egfbo"]
 size = Vector2(14, 28.333342)
@@ -732,5 +733,9 @@ scale = Vector2(0.86399966, 0.159999)
 shape = SubResource("RectangleShape2D_utetp")
 target_position = Vector2(0, 0)
 collision_mask = 2
+
+[node name="FiringSpawn" type="Node2D" parent="."]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("12_hylpr")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

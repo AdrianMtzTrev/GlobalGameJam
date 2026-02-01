@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://r114mrugff2d"]
+
+[ext_resource type="Texture2D" uid="uid://dt4uun7ymf67r" path="res://Characters/Player/Projectile/boladefuego.png" id="1_1wbrs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ioyp"]
+
+[node name="Projectile" type="CharacterBody2D"]
+
+[node name="CollisionProjectile" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_6ioyp")
+
+[node name="SpriteProjectile" type="Sprite2D" parent="."]
+texture = ExtResource("1_1wbrs")
