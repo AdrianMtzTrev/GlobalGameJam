@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6krqld0jmkc7"
-path="res://.godot/imported/ATLAS_COLISION_003.png-1c3393f318020386141f968d48e58908.ctex"
+uid="uid://cc4h8m17m33ii"
+path="res://.godot/imported/Background_Night.png-0d176b101c6a066b655cc97293bc3949.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Tiles/ATLAS_COLISION_003.png"
-dest_files=["res://.godot/imported/ATLAS_COLISION_003.png-1c3393f318020386141f968d48e58908.ctex"]
+source_file="res://Scenes/Tiles/Background_Night.png"
+dest_files=["res://.godot/imported/Background_Night.png-0d176b101c6a066b655cc97293bc3949.ctex"]
 
 [params]
 
