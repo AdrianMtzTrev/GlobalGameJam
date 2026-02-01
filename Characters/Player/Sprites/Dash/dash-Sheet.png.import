@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cts4gjrliupun"
-path="res://.godot/imported/MC_Idle_Spritesheet48x48.png-c7e9f4cff21c0b479d75ecd2dae3ecc8.ctex"
+uid="uid://1dv2ieqv3828"
+path="res://.godot/imported/dash-Sheet.png-fd9d96b5e98267506bfad9e2fa740798.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Player/Sprites/Idle/MC_Idle_Spritesheet48x48.png"
-dest_files=["res://.godot/imported/MC_Idle_Spritesheet48x48.png-c7e9f4cff21c0b479d75ecd2dae3ecc8.ctex"]
+source_file="res://Characters/Player/Sprites/Dash/dash-Sheet.png"
+dest_files=["res://.godot/imported/dash-Sheet.png-fd9d96b5e98267506bfad9e2fa740798.ctex"]
 
 [params]
 

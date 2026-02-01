@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cts4gjrliupun"
-path="res://.godot/imported/MC_Idle_Spritesheet48x48.png-c7e9f4cff21c0b479d75ecd2dae3ecc8.ctex"
+uid="uid://dhkp0puro61qf"
+path="res://.godot/imported/MC_Idle_Spritesheet48x481.png-2d9f8551cc924d767e3a612e32f00213.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Player/Sprites/Idle/MC_Idle_Spritesheet48x48.png"
-dest_files=["res://.godot/imported/MC_Idle_Spritesheet48x48.png-c7e9f4cff21c0b479d75ecd2dae3ecc8.ctex"]
+source_file="res://Characters/Player/Sprites/Idle/MC_Idle_Spritesheet48x481.png"
+dest_files=["res://.godot/imported/MC_Idle_Spritesheet48x481.png-2d9f8551cc924d767e3a612e32f00213.ctex"]
 
 [params]
 
