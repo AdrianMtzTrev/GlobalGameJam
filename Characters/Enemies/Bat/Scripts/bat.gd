@@ -11,8 +11,8 @@ var state: State = State.IDLE
 @export var float_amplitude := 8.0
 @export var float_speed := 2.0
 @export var follow_speed := 60.0
-@export var attack_speed := 220.0
-@export var attack_range := 40.0
+@export var attack_speed := 180.0
+@export var attack_range := 20.0
 @export var attack_duration := 0.25
 
 var attack_dir := Vector2.ZERO
