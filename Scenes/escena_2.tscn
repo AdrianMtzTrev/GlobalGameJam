@@ -183,23 +183,23 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 rotation_smoothing_speed = 8.0
 
-[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("pasillo_camera", "player_camera")]
+[node name="CamaraFija" type="Area2D" parent="." node_paths=PackedStringArray("pasillo_camera", "player_camera")]
 script = ExtResource("9_futaa")
 pasillo_camera = NodePath("../Camera2D")
 player_camera = NodePath("../Player/Camera2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CamaraFija"]
 position = Vector2(1018, 87.125)
 shape = SubResource("RectangleShape2D_u1skb")
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="EntradaBoss1" type="Area2D" parent="."]
 script = ExtResource("10_82628")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntradaBoss1"]
 position = Vector2(999, 88.25)
 shape = SubResource("RectangleShape2D_yc7pe")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EntradaBoss1"]
 position = Vector2(999, 88.25)
 shape = SubResource("RectangleShape2D_yc7pe")
 
@@ -253,7 +253,7 @@ position = Vector2(37, 185)
 [node name="Spider5" parent="." instance=ExtResource("14_it0i5")]
 position = Vector2(633, 248)
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
-[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
+[connection signal="body_entered" from="CamaraFija" to="CamaraFija" method="_on_body_entered"]
+[connection signal="body_exited" from="CamaraFija" to="CamaraFija" method="_on_body_exited"]
+[connection signal="body_entered" from="EntradaBoss1" to="EntradaBoss1" method="_on_body_entered"]
+[connection signal="body_exited" from="EntradaBoss1" to="EntradaBoss1" method="_on_body_exited"]
