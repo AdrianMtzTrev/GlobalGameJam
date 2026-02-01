@@ -164,7 +164,6 @@ editor_draw_drag_margin = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(794, 152)
-enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 rotation_smoothing_speed = 8.0
