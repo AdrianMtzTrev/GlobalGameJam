@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b31sn14lgmi3d"]
+[gd_scene load_steps=20 format=3 uid="uid://b31sn14lgmi3d"]
 
 [ext_resource type="Texture2D" uid="uid://cts4gjrliupun" path="res://Characters/Player/Sprites/Idle/Player Idle 48x48.png" id="1_i823h"]
 [ext_resource type="Script" uid="uid://b0nt1jqqmhaxw" path="res://Characters/Player/Scripts/player.gd" id="1_rg7kn"]
@@ -417,8 +417,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ublsl"]
 size = Vector2(16, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_utetp"]
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rg7kn")
 
@@ -436,13 +434,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_omv0o")
 }
 
-[node name="LedgeGrab" type="ShapeCast2D" parent="."]
+[node name="LedgeGrab" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11.00005)
 scale = Vector2(1, 1e-05)
 shape = SubResource("RectangleShape2D_ublsl")
-
-[node name="WallCheck" type="ShapeCast2D" parent="."]
-position = Vector2(0, -8)
-scale = Vector2(0.79999846, 0.23999903)
-shape = SubResource("RectangleShape2D_utetp")
-target_position = Vector2(0, 0)

@@ -27,27 +27,66 @@ var state : String = "IDLE"
 var updateAnimation : bool = true
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-@onready var sprite : Sprite2D = $Sprite2D
+@onready var playerSprite : Sprite2D = $PlayerSprite
+
+# --- LEDGE SENSOR ---
+# PLEASE CHANGE YOUR NODE TYPE TO ShapeCast2D or RayCast2D
+@onready var ledge_check : Node2D = $LedgeGrab
+@onready var wall_check : ShapeCast2D = $WallCheck
 
 func _ready() -> void:
-	return
+	# Safety: If using ShapeCast2D, ignore own body
+	if ledge_check is ShapeCast2D:
+		ledge_check.add_exception(self)
 
 func _physics_process(delta: float) -> void:
 	if !isAlive():
 		return
-	
-	# Apply Gravity (Add to existing Y velocity, don't replace it)
-	velocity.y += GetGravity() * delta
-
-	# Get Horizontal Input (Walk)
-	# This replaces your old "direction" logic for X movement
 	var input_axis = Input.get_axis("left", "right")
-	velocity.x = input_axis * moveSpeed
-
-	# Handle Jump Input
-	# We use "is_action_just_pressed" so you don't bunny hop if you hold the button
-	if Input.is_action_just_pressed("up") and is_on_floor():
-		Jump()
+	# 1. Flip Directions (LOCKED while grabbing)
+	if state != "EDGE_GRAB":
+		if input_axis != 0:
+			playerSprite.flip_h = input_axis < 0
+			# Flip the sensor too!
+			ledge_check.scale.x = input_axis 
+	# 2. State Logic
+	if state == "EDGE_GRAB":
+		# --- GRAB BEHAVIOR ---
+		velocity = Vector2.ZERO # Stop falling
+		
+		# Climb Up
+		if Input.is_action_just_pressed("up"):
+			Jump()
+			state = "JUMP"
+		
+		# Drop Down
+		if Input.is_action_just_pressed("down"):
+			state = "FALLING"
+			position.y += 5 # Push down slightly
+			
+	else:
+		# --- NORMAL BEHAVIOR ---
+		velocity.y += GetGravity() * delta
+		velocity.x = input_axis * moveSpeed
+		if Input.is_action_just_pressed("up") and is_on_floor():
+			Jump()
+		# --- LEDGE DETECTION LOGIC ---
+		# 1. Must be in air and falling
+		# 2. Body must be touching a wall (is_on_wall)
+		# 3. Head sensor must be clear (not is_colliding)
+		if not is_on_floor() and velocity.y > 0:
+			# Check if we found a ledge
+			if wall_check.is_colliding() and not ledge_check.is_colliding():
+				state = "EDGE_GRAB"
+				updateAnimation = true
+				
+				# --- THE SNAP FIX ---
+				# 1. Get the wall direction (Is it to my Right or Left?)
+				var wall_direction = get_wall_normal().x 
+				
+				# 2. "get_wall_normal" points AWAY from the wall (e.g. -1 if wall is on Right)
+				# So we subtract it to move TOWARDS the wall.
+				position.x -= wall_direction * 4 # <--- Adjust '4' to fit your gap size!
 
 	# Move
 	move_and_slide()
@@ -58,16 +97,21 @@ func _physics_process(delta: float) -> void:
 		UpdateAnimation()
 
 func GetGravity() -> float:
-	# If we are moving up, we use jump gravity. If we are moving down, we use fall gravity.
+	if state == "EDGE_GRAB": 
+		return 0.0
 	return jumpGravity if velocity.y < 0.0 else fallGravity
 
 func Jump() -> void:
 	velocity.y = jumpVelocity
 
 func UpdateState(input_axis: float) -> void:
-	# Handle Facing Direction
+	# If grabbing, don't let Run/Idle override it
+	if state == "EDGE_GRAB":
+		return
+
+	# Handle Facing Direction Visuals
 	if input_axis != 0:
-		sprite.flip_h = input_axis < 0
+		playerSprite.flip_h = input_axis < 0
 	
 	# Determine State based on Physics (Air vs Ground)
 	var new_state = state
@@ -101,7 +145,7 @@ func UpdateAnimation() -> void:
 
 func TakeDamage():
 	health -= 1
-	signal_healthChanged.emit(health) # Shout the signal so the UI can hear it
+	signal_healthChanged.emit(health) 
 
 func isAlive():
 	return health > 0

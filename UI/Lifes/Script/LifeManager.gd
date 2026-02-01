@@ -6,7 +6,6 @@ const HEART_SCALE: Vector2 = Vector2(0.1, 0.1)
 # Reference variables for texture & player
 @export var heart_texture: Texture2D 
 @export var player_ref : Player 
-
 @export var distance_between_hearts: float = 50.0 
 
 func _ready():
