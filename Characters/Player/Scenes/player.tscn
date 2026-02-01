@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://b31sn14lgmi3d"]
+[gd_scene load_steps=22 format=3 uid="uid://b31sn14lgmi3d"]
 
 [ext_resource type="Texture2D" uid="uid://cts4gjrliupun" path="res://Characters/Player/Sprites/Idle/Player Idle 48x48.png" id="1_i823h"]
 [ext_resource type="Script" uid="uid://b0nt1jqqmhaxw" path="res://Characters/Player/Scripts/player.gd" id="1_rg7kn"]
 [ext_resource type="Texture2D" uid="uid://boty1glhbpvmd" path="res://Characters/Player/Sprites/Walk/PlayerWalk 48x48.png" id="3_52sos"]
 [ext_resource type="Texture2D" uid="uid://djk2g4mpehk0f" path="res://Characters/Player/Sprites/Jump/player jump left 48x48-sheet.png" id="4_omv0o"]
+[ext_resource type="Texture2D" uid="uid://drq4uv8eo5j76" path="res://Characters/Player/Sprites/Idle/MC_Idle_Spritesheet48x48.png" id="4_utetp"]
 [ext_resource type="Texture2D" uid="uid://ds5lmkqvcy2rb" path="res://Characters/Player/Sprites/Run/player run 48x48.png" id="5_bw35f"]
 [ext_resource type="Texture2D" uid="uid://ftye70uwnj5o" path="res://Characters/Player/Sprites/Ledge Grab-Climb/player ledge climb 48x48.png" id="6_ublsl"]
 
@@ -60,10 +61,10 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.43333334, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+"values": [0, 1, 2]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -72,10 +73,10 @@ tracks/1/path = NodePath("PlayerSprite:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_i823h"), ExtResource("1_i823h")]
+"values": [ExtResource("4_utetp")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -84,10 +85,10 @@ tracks/2/path = NodePath("PlayerSprite:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [10, 10]
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_xwb2w"]
@@ -423,8 +424,8 @@ size = Vector2(16, 10)
 script = ExtResource("1_rg7kn")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 2)
+position = Vector2(0, 5)
+scale = Vector2(1, 1.1999997)
 shape = SubResource("CapsuleShape2D_qqy1o")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -437,11 +438,13 @@ libraries = {
 }
 
 [node name="LedgeGrab" type="ShapeCast2D" parent="."]
+visible = false
 position = Vector2(0, -11.00005)
 scale = Vector2(1, 1e-05)
 shape = SubResource("RectangleShape2D_ublsl")
 
 [node name="WallCheck" type="ShapeCast2D" parent="."]
+visible = false
 position = Vector2(0, -8)
 scale = Vector2(0.79999846, 0.23999903)
 shape = SubResource("RectangleShape2D_utetp")
